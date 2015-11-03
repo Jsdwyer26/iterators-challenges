@@ -12,35 +12,51 @@ Tonight you'll be implementing iterator functions as an extension of the lesson 
 
 3. Write a function called reduce that takes in an array of numbers. `reduce` should return the sum of all the numbers in the array.
 
-4. `filter(arr, truthTest)`
+4. Write a function called `filter` that takes in an array and another function (a truth test). `filter` should iterate through the array, check whether each value passes the truth test function, and return a new array containing all the values that passed.
+ 
 
-	```js
+var isEven = function(num) {
+return num % 2 === 0;
+}
+function filter(array, truthTest) {
+    var newArray = [];
+    for(var i = 0; i < array.length; i++){
+        if (truthTest(array[i])) {
+          newArray.push(array[i]);   
+        }
+    } 
 
-	function isEven(num){
-		return num % 2 === 0;
-	}
-
-	filter([1, 2, 3, 4, 5, 6], isEven);
+    return newArray;
+}
+filter([1, 2, 3, 4, 5, 6], isEven);
 
 	// => [2, 4, 6]
 	```
 
-	Write a function called `filter` that takes in an array and another function (a truth test). `filter` should iterate through the array, check whether each value passes the truth test function, and return a new array containing all the values that passed.
+	
 
-5. `partition(arr, truthTest)`
+5. Write a function called `partition` that takes in an array and another function (a truth test).  `partition` should split the array into two groups: one whose elements all pass the truth test and one whose elements all fail. It should return a new array with the two groups nested inside.
 
-
-	```js
-	function isOdd(num){
+var isOdd = function(num){
 		return num % 2 !== 0;
-	}
+}
+function partition(array, truthTest) {
+    var evens = [];
+    var odds = [];
+    for(var i = 0; i < array.length; i++){
+        if(truthTest(array[i])){
+            evens.push(array[i]);
+        } else {
+            odds.push(array[i]);
+        }
+    }
+   
+    return[evens, odds];
+}
 
-	partition([0, 1, 2, 3, 4, 5], isOdd);
-	// => [[1, 3, 5], [0, 2, 4]]
-	```
+partition([0, 1, 2, 3, 4, 5], isOdd);
 
 
-Write a function called `partition` that takes in an array and another function (a truth test).  `partition` should split the array into two groups: one whose elements all pass the truth test and one whose elements all fail. It should return a new array with the two groups nested inside.
 
 
 ## Stretch Challenges
